@@ -1,4 +1,4 @@
 <resources>
-    <string name="facebook_app_id">XXX</string>
+    <string name="facebook_app_id">test</string>
     <string name="fb_login_protocol_scheme">fbXXX</string>
 </resources>
