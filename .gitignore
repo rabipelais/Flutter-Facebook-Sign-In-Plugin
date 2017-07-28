@@ -7,3 +7,4 @@ build/
 ios/.generated/
 packages
 pubspec.lock
+example/android/app/src/main/res/values/strings.xml
