@@ -46,12 +46,7 @@ public class FacebookSignInPlugin implements MethodCallHandler,
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
-    if (call.method.equals("login")){
-      // //FacebookSdk.setAutoLogAppEventsEnabled(false);
-      FacebookSdk.sdkInitialize(activity);
-      LoginManager.getInstance().registerCallback(callbackManager, getCallback(result));
-      LoginManager.getInstance().logInWithReadPermissions(this.activity, Arrays.asList("public_profile", "user_friends"));
-    } else if (call.method.equals("loginWithReadPermissions")) {
+    if (call.method.equals("loginWithReadPermissions")) {
       FacebookSdk.sdkInitialize(activity);
       LoginManager.getInstance().registerCallback(callbackManager, getCallback(result));
       List<String> permissions = call.argument("permissions");
@@ -80,7 +75,7 @@ public class FacebookSignInPlugin implements MethodCallHandler,
 
       @Override
       public void onCancel() {
-        result.success("__CANCELLED__");
+        result.error("UNAVAILABLE", "User discontinued login process.", null);
       }
 
       @Override

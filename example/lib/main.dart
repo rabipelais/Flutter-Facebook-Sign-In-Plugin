@@ -1,6 +1,10 @@
+// main.dart
+//
+// Example app for the Flutter Facebook Login plugin.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:facebook_sign_in/facebook_sign_in.dart';
+import 'package:facebook_sign_in/facebook_sign_in.dart'; // Import Facebook Login plugin.
 
 void main() {
   runApp(new MyApp());
@@ -13,6 +17,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  /// Making permission lists to login.
+  /// 
+  /// The permissions that can be used can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
   List<String> read = ["public_profile", "user_friends", "email"];
   List<String> publish = ["publish_actions"];
 
@@ -26,16 +33,28 @@ class _MyAppState extends State<MyApp> {
         body: new Column(
           children: [
             new RaisedButton(
-              child: new Text("Login"),
-              onPressed: () async => print(await FacebookSignIn.loginWithReadPermissions(read)),
+              child: new Text("Login with read permissions"),
+              onPressed: () async {
+                /// Login with read permissions.
+                String token = await FacebookSignIn.loginWithReadPermissions(read);
+                print("token: " + token);
+              },
             ),
             new RaisedButton(
-              child: new Text("Login"),
-              onPressed: () async => print(await FacebookSignIn.loginWithPublishPermissions(publish)),
+              child: new Text("Login with publish permissions"),
+              onPressed: () async { 
+                /// Login with publish permissions.
+                String token = await FacebookSignIn.loginWithPublishPermissions(publish);
+                print("token: " + token);
+              },
             ),
             new RaisedButton(
               child: new Text("Logout"),
-              onPressed: () async => print(await FacebookSignIn.logout()),
+              onPressed: () async { 
+                /// Logout the user.
+                await FacebookSignIn.logout();
+                print("Logged out!"); 
+              },
             ),
           ]
         ),
