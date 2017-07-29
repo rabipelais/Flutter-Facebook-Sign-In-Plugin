@@ -66,6 +66,12 @@ Flutter plugin implementing native Facebook sdks for authentication. This plugin
 ```
 
 ## Using the plugin
+
+### Importing the plugin
+```
+import 'package:facebook_sign_in/facebook_sign_in.dart';
+```
+
 ### Login with Read Permissions:
 ```
 loginWithReadPermissions(List<String> permissions)
@@ -75,6 +81,10 @@ loginWithReadPermissions(List<String> permissions)
     - `List<String> permissions`:  A list of permissions the developer wants.
     
 A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
+#### Usage
+```
+FacebookSignIn.loginWithReadPermissions(read);
+```
 
 ### Login with Publish Permissions:
 ```
@@ -85,12 +95,20 @@ loginWithPublishPermissions(List<String> permissions)
     - `List<String> permissions`:  A list of permissions the developer wants.
     
  A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
+#### Usage
+```
+FacebookSignIn.loginWithPublishPermissions(publish);
+```
 
 ### Logging out
 ```
 logout()
 ```
 `logout` logs out the currently signed in user.
+#### Usage
+```
+FacebookSignIn.logout();
+```
 
 ## Getting Started
 
