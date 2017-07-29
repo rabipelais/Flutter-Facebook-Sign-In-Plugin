@@ -4,7 +4,7 @@
 
 Flutter plugin implementing native Facebook sdks for authentication. This plugin works on iOS and Android.
 
-## Android Setup (The example app includes an example of the implementation)
+## Android Setup (The example app includes an example of the setup)
 ### Step 1
 - In `android/app/src/main/res` create a new map called "values" (you can skip this if you already have this map). 
 - Create a new file in the "values" directory called "strings.xml" (you can skip this if you already have this file).
@@ -64,6 +64,33 @@ Flutter plugin implementing native Facebook sdks for authentication. This plugin
     </activity>
 </application>
 ```
+
+## Using the plugin
+### Login with Read Permissions:
+```
+loginWithReadPermissions(List<String> permissions)
+```
+`loginWithReadPermissions` logs the user in with the given read permissions.
+- params: 
+    - `List<String> permissions`:  A list of permissions the developer wants.
+    
+A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
+
+### Login with Publish Permissions:
+```
+loginWithPublishPermissions(List<String> permissions)
+```
+`loginWithPublishPermissions` logs the user in with the given publish permissions.
+- params: 
+    - `List<String> permissions`:  A list of permissions the developer wants.
+    
+ A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
+
+### Logging out
+```
+logout()
+```
+`logout` logs out the currently signed in user.
 
 ## Getting Started
 
