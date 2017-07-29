@@ -76,35 +76,41 @@ import 'package:facebook_sign_in/facebook_sign_in.dart';
 ```
 loginWithReadPermissions(List<String> permissions)
 ```
-`loginWithReadPermissions` logs the user in with the given read permissions.
+`loginWithReadPermissions` logs the user in with the given read permissions. This function is asynchronous.
 - params: 
     - `List<String> permissions`:  A list of permissions the developer wants.
+- returns:
+    - `Future<String> token`
     
 A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
 #### Usage
 ```
-FacebookSignIn.loginWithReadPermissions(read);
+await FacebookSignIn.loginWithReadPermissions(read);
 ```
 
 ### Login with Publish Permissions:
 ```
 loginWithPublishPermissions(List<String> permissions)
 ```
-`loginWithPublishPermissions` logs the user in with the given publish permissions.
+`loginWithPublishPermissions` logs the user in with the given publish permissions. This function is asynchronous.
 - params: 
     - `List<String> permissions`:  A list of permissions the developer wants.
+- returns:
+    - `Future<String> token`
     
  A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
 #### Usage
 ```
-FacebookSignIn.loginWithPublishPermissions(publish);
+await FacebookSignIn.loginWithPublishPermissions(publish);
 ```
 
 ### Logging out
 ```
 logout()
 ```
-`logout` logs out the currently signed in user.
+`logout` logs out the currently signed in user. This function is asynchronous.
+- returns:
+    - `Future<String> success`
 #### Usage
 ```
 FacebookSignIn.logout();
