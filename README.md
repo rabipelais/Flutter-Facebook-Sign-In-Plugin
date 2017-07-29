@@ -113,7 +113,7 @@ logout()
     - `Future<String> success`
 #### Usage
 ```
-FacebookSignIn.logout();
+await FacebookSignIn.logout();
 ```
 
 ## Getting Started
