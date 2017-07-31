@@ -4,7 +4,7 @@
 
 Flutter plugin implementing native Facebook sdks for authentication. This plugin works on iOS and Android.
 
-## Android Setup (The example app includes an example of the implementation)
+## Android Setup (The example app includes an example of the setup)
 ### Step 1
 - In `android/app/src/main/res` create a new map called "values" (you can skip this if you already have this map). 
 - Create a new file in the "values" directory called "strings.xml" (you can skip this if you already have this file).
@@ -63,6 +63,57 @@ Flutter plugin implementing native Facebook sdks for authentication. This plugin
         </intent-filter>
     </activity>
 </application>
+```
+
+## Using the plugin
+
+### Importing the plugin
+```
+import 'package:facebook_sign_in/facebook_sign_in.dart';
+```
+
+### Login with Read Permissions:
+```
+loginWithReadPermissions(List<String> permissions)
+```
+`loginWithReadPermissions` logs the user in with the given read permissions. This function is asynchronous.
+- params: 
+    - `List<String> permissions`:  A list of permissions the developer wants.
+- returns:
+    - `Future<String> token`
+    
+A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
+#### Usage
+```
+await FacebookSignIn.loginWithReadPermissions(read);
+```
+
+### Login with Publish Permissions:
+```
+loginWithPublishPermissions(List<String> permissions)
+```
+`loginWithPublishPermissions` logs the user in with the given publish permissions. This function is asynchronous.
+- params: 
+    - `List<String> permissions`:  A list of permissions the developer wants.
+- returns:
+    - `Future<String> token`
+    
+ A full list of permissions can be found here: https://developers.facebook.com/docs/facebook-login/permissions/
+#### Usage
+```
+await FacebookSignIn.loginWithPublishPermissions(publish);
+```
+
+### Logging out
+```
+logout()
+```
+`logout` logs out the currently signed in user. This function is asynchronous.
+- returns:
+    - `Future<String> success`
+#### Usage
+```
+await FacebookSignIn.logout();
 ```
 
 ## Getting Started
