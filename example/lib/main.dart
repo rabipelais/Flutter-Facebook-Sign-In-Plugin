@@ -49,6 +49,22 @@ class _MyAppState extends State<MyApp> {
               },
             ),
             new RaisedButton(
+              child: new Text("Check if logged in"),
+              onPressed: () async { 
+                /// Login with publish permissions.
+                bool token = await FacebookSignIn.isLoggedIn();
+                print("Logged in: " + token.toString());
+              },
+            ),
+            new RaisedButton(
+              child: new Text("Get token"),
+              onPressed: () async { 
+                /// Login with publish permissions.
+                String token = await FacebookSignIn.getToken();
+                print("token: " + token);
+              },
+            ),
+            new RaisedButton(
               child: new Text("Logout"),
               onPressed: () async { 
                 /// Logout the user.

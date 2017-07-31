@@ -12,8 +12,7 @@ class FacebookSignIn {
 
     /// Login with read permissions.
     /// 
-    /// @param permissions
-    ///     List of strings with permissions wanted.
+    /// Logs the user in with a list of read permissions to provide.
     static Future<String> loginWithReadPermissions(List<String> permissions) {
         return _channel.invokeMethod("loginWithReadPermissions", <String, List<String>> {
             "permissions": permissions
@@ -22,8 +21,7 @@ class FacebookSignIn {
 
     /// Login with publish permissions.
     /// 
-    /// @param permissions
-    ///     List of strings with permissions wanted.
+    /// Logs the user in with a list of publish permissions to provide.
     static Future<String> loginWithPublishPermissions(List<String> permissions) {
         return _channel.invokeMethod("loginWithPublishPermissions", <String, List<String>> {
             "permissions": permissions
@@ -33,5 +31,13 @@ class FacebookSignIn {
     /// Logout user.
     static Future<String> logout() {
         return _channel.invokeMethod("logout");
+    }
+
+    static Future<bool> isLoggedIn() {
+        return _channel.invokeMethod("isLoggedIn");
+    }
+
+    static Future<String> getToken() {
+        return _channel.invokeMethod("getToken");
     }
 }

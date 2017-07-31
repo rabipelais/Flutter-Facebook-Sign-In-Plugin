@@ -37,7 +37,7 @@ public class FacebookSignInPlugin implements MethodCallHandler,
 
 
   private Activity activity;
-  private AccessToken token;
+  //private AccessToken token;
   private CallbackManager callbackManager = CallbackManager.Factory.create();
 
   private FacebookSignInPlugin(Activity activity) {
@@ -47,18 +47,30 @@ public class FacebookSignInPlugin implements MethodCallHandler,
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
     if (call.method.equals("loginWithReadPermissions")) {
-      FacebookSdk.sdkInitialize(activity);
+      //FacebookSdk.sdkInitialize(activity);
       LoginManager.getInstance().registerCallback(callbackManager, getCallback(result));
       List<String> permissions = call.argument("permissions");
       LoginManager.getInstance().logInWithReadPermissions(this.activity, permissions);
     } else if (call.method.equals("loginWithPublishPermissions")) {
-      FacebookSdk.sdkInitialize(activity);
+      //FacebookSdk.sdkInitialize(activity);
       LoginManager.getInstance().registerCallback(callbackManager, getCallback(result));
       List<String> permissions = call.argument("permissions");
       LoginManager.getInstance().logInWithPublishPermissions(this.activity, permissions);
     } else if (call.method.equals("logout")) {
       LoginManager.getInstance().logOut();
       result.success("Logged out");
+    } else if (call.method.equals("isLoggedIn")) {
+      AccessToken currentToken = AccessToken.getCurrentAccessToken();
+      if (currentToken == null)
+        result.success(false);
+      else
+        result.success(true);
+    } else if (call.method.equals("getToken")) {
+      AccessToken currentToken = AccessToken.getCurrentAccessToken();
+      if (currentToken == null)
+        result.error("UNAVAILABLE", "No token available, is the user logged in?", null);
+      else
+        result.success(currentToken.getToken());
     } else {
       result.notImplemented();
     }
@@ -69,7 +81,7 @@ public class FacebookSignInPlugin implements MethodCallHandler,
     return new FacebookCallback<LoginResult>() {
       @Override
       public void onSuccess(LoginResult loginResult) {
-        token = loginResult.getAccessToken();
+        AccessToken token = loginResult.getAccessToken();
         result.success(token.getToken());
       }
 
