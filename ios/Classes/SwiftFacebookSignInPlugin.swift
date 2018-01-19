@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import FacebookLogin
     
 public class SwiftFacebookSignInPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
