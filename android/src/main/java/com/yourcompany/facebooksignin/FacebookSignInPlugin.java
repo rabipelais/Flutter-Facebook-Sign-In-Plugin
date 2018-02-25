@@ -14,6 +14,8 @@ import com.facebook.login.LoginResult;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -34,7 +36,6 @@ public class FacebookSignInPlugin implements MethodCallHandler,
     registrar.addActivityResultListener(instance);
     channel.setMethodCallHandler(instance);
   }
-
 
   private Activity activity;
   //private AccessToken token;
@@ -81,8 +82,19 @@ public class FacebookSignInPlugin implements MethodCallHandler,
     return new FacebookCallback<LoginResult>() {
       @Override
       public void onSuccess(LoginResult loginResult) {
-        AccessToken token = loginResult.getAccessToken();
-        result.success(token.getToken());
+        final AccessToken accessToken = loginResult.getAccessToken();
+        final HashMap<String, Object> tokenHashmap = new HashMap<String, Object>() {{
+            put("token", accessToken.getToken());
+            put("userId", accessToken.getUserId());
+            put("expires", accessToken.getExpires().getTime());
+            put("permissions", new ArrayList<>(accessToken.getPermissions()));
+            put("declinedPermissions", new ArrayList<>(accessToken.getDeclinedPermissions()));
+        }};
+        HashMap<String, Object> resultMap = new HashMap<String, Object>() {{
+          put("result", "loggedIn");
+          put("accessToken", tokenHashmap);
+        }};
+        result.success(resultMap);
       }
 
       @Override
