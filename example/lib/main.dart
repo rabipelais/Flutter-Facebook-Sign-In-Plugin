@@ -36,8 +36,8 @@ class _MyAppState extends State<MyApp> {
               child: new Text("Login with read permissions"),
               onPressed: () async {
                 /// Login with read permissions.
-                String token = await FacebookSignIn.loginWithReadPermissions(read);
-                print("token: " + token);
+                var token = await FacebookSignIn.loginWithReadPermissions(read);
+                print("token: RSTRAST" );
               },
             ),
             new RaisedButton(

@@ -82,6 +82,7 @@ public class FacebookSignInPlugin implements MethodCallHandler,
     return new FacebookCallback<LoginResult>() {
       @Override
       public void onSuccess(LoginResult loginResult) {
+        System.out.println("Success! Getting token and putting into hashmap.");
         final AccessToken accessToken = loginResult.getAccessToken();
         final HashMap<String, Object> tokenHashmap = new HashMap<String, Object>() {{
             put("token", accessToken.getToken());
@@ -91,7 +92,7 @@ public class FacebookSignInPlugin implements MethodCallHandler,
             put("declinedPermissions", new ArrayList<>(accessToken.getDeclinedPermissions()));
         }};
         HashMap<String, Object> resultMap = new HashMap<String, Object>() {{
-          put("result", "loggedIn");
+          put("status", "loggedIn");
           put("accessToken", tokenHashmap);
         }};
         result.success(resultMap);
